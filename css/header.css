@@ -1,0 +1,35 @@
+#header{
+    padding: 0px 5rem;
+    display: grid;
+    grid-template-columns: 10rem 1fr 25rem 15rem;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 2.5rem;
+}
+.nivel{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    text-align: center;
+
+}
+.nivel .num_nivel{
+    width: 5rem;
+    height: 4rem;
+    padding: 1rem;
+    background-color: black;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.vidas{
+    display: flex;
+    align-items: center;
+    justify-items: right;
+    padding-top: 0.5rem;
+    font-size: 3rem;
+
+}
