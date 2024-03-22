@@ -1,35 +1,46 @@
-#header{
+#header {
+    grid-column: 1/9;
+
     padding: 0px 5rem;
+
     display: grid;
-    grid-template-columns: 10rem 1fr 25rem 15rem;
-    justify-content: space-between;
+    grid-template-columns: 13rem 1fr 30rem 15rem;
     align-items: center;
+    gap: 2rem;
 
     font-size: 2.5rem;
 }
-.nivel{
+.nivel {
     display: flex;
     gap: 1rem;
     align-items: center;
-    text-align: center;
-
 }
-.nivel .num_nivel{
-    width: 5rem;
-    height: 4rem;
-    padding: 1rem;
-    background-color: black;
-    color: white;
+.nivel .num-nivel {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #00fffb;
+    color: rgb(0, 0, 0);
+    border: 3px solid black;
+    border-radius: 3px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.vidas{
+.vidas {
     display: flex;
     align-items: center;
-    justify-items: right;
+    justify-self: right;
+    gap: 1rem;
     padding-top: 0.5rem;
-    font-size: 3rem;
-
+    font-size: 3.5rem;
+}
+.tiempo {
+    justify-self: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.tiempo .ico_time {
+    padding-top: 0.2em;
 }

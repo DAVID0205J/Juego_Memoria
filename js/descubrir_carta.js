@@ -1,55 +1,67 @@
+import { Cargar_acierto } from "./cargar_acierto.js";
+import { Actualizar_vidas } from "./Actualizar_vidas.js";
+import { Cargar_puntos } from "./puntos.js";
+import { vidas } from "./Actualizar_vidas.js";
 
+import { iniciar_cronometro } from "./cargar_cronometro.js";
 
-let todas_las_cartas = document.querySelectorAll(".carta_tracera");
-let contador_de_cartas= document.querySelector(".")
+let todas_las_cartad = document.querySelectorAll(".carta_trasera");
 
-todas_las_cartas.forEach((cada_div) => {
+let contador_de_cartas = 0;
+let estado_del_cronometro = 0;
 
+todas_las_cartad.forEach((cada_div) => {
     cada_div.addEventListener("click", () => {
-        
+
+        estado_del_cronometro++;
+        if(estado_del_cronometro==1){
+            iniciar_cronometro(0,60);
+        }
+
+        /* CANTIDAD DE CARTAS DESCUBIRTAS */
         let cartas_descubiertas = document.querySelectorAll(".activar");
-        let total_descubiertas = cartas_descubiertas.length;
-        
-        if (total_descubiertas < 2) {
+        if (cartas_descubiertas.length < 2){
             cada_div.classList.add("activar");
             cartas_descubiertas = document.querySelectorAll(".activar");
-            
-            if (cartas_descubiertas.length == 2) {
 
-                
-                function comparar (){
-                    let carta1 = cartas_descubiertas[0].innerHTML;
-                    let carta2 = cartas_descubiertas[1].innerHTML;
+            if (cartas_descubiertas.length == 2){
 
-                    if (carta1 == carta2){
-                        console.log("Verdadero");
+                let carta_1 = cartas_descubiertas[0].textContent;
+                let carta_2 = cartas_descubiertas[1].textContent;
 
-                        contador_de_cartas++;
+                if (carta_1 == carta_2) {
 
-                        if(contador_de_cartas==todas_las_cartas.length/2){
-                            c
-                            alert("todas las cartas descubiertas ")
-                        }
-                        
-                        cartas_descubiertas.forEach((total_descubiertas) => {
-                            total_descubiertas.classList.remove("activar")
-                            total_descubiertas.classList.add("ocultar");
-                        });
+                    contador_de_cartas++;
 
-                    }else{
-                        console.log("Falso");
+                    if(contador_de_cartas==todas_las_cartad.length/2){
+                        Cargar_puntos(vidas.length);
                     }
+
+                    setTimeout(()=>{
+                        cartas_descubiertas.forEach((carta) => {
+                            carta.innerHTML = " "
+                            carta.classList.remove("activar");
+                            carta.classList.add("ocultar");
+                        })
+                        Cargar_acierto(carta_1); //🥱 Muy fácil
+                    },1000);
+
+                } else {
+
+                    Actualizar_vidas(false);
+
+                    console.log("Falso");                    setTimeout(() => {
+                        cartas_descubiertas.forEach((cada_carta_descubierta) => {
+                            cada_carta_descubierta.classList.remove("activar");
+                        })
+                    }, 1000);
                 }
 
-                comparar();
-                setTimeout(() => {
-                    cartas_descubiertas.forEach((cada_carta_descubierta) => {
-                        cada_carta_descubierta.classList.remove("activar");
-                    });
-                }, 1000);    
             }
-        } else {
-            console.log("Dos cartas descubiertas");
         }
     });
 });
+
+if (estado_del_cronometro){
+    console.log("Activa");
+}

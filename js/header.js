@@ -1,17 +1,18 @@
-let header= document.querySelector("#header");
+let header = document.querySelector("#header");
 
-header.innerHTML=`
+header.innerHTML = `
     <div class="nivel">
-        nivel
-        <div class="num_nivel">1</div>
+        Nivel
+        <div class="num-nivel">1</div>
     </div>
     <div class="puntos">🪙 0</div>
-    <span class="vidas"></span>
+
+    <div class="vidas"></div>
+
     <div class="tiempo">
-        <span class="material-symbols-outlined">
+        <span class="material-symbols-outlined ico_time">
             timer
-            </span>
-        <span>00:00</span>
-        
+        </span> 
+        <span class="cronometro">00:00</span>
     </div>
 `;
