@@ -2,7 +2,6 @@
 import { lista_cartas_nivel } from "./data_cartas.js";
 import { Cargar_puntos } from "./puntos.js";
 import { vidas, Actualizar_vidas } from "./Actualizar_vidas.js";
-import { iniciar_cronometro } from "./cargar_cronometro.js";
 import { Cargar_acierto } from "./cargar_acierto.js";
 
 // Variables globales
