@@ -1,5 +1,3 @@
-// puntos.js
-
 function Cargar_puntos(corazones_restantes, nivelActual) {
     let div_puntos = document.querySelector(".puntos");
     div_puntos.innerHTML = `

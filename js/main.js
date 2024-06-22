@@ -54,7 +54,7 @@ function iniciarJuego() {
 
 // Función para iniciar el cronómetro
 function iniciarCronometro() {
-    let minutos = 1;
+    let minutos = 3;
     let segundos = 0;
 
     let divCronometro = document.querySelector(".cronometro");
