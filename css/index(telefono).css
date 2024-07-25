@@ -1,4 +1,4 @@
-/* Responsive design for screens 375px wide */
+/* 
 @media (max-width: 375px) {
     #header {
         grid-template-columns: auto;
@@ -41,3 +41,4 @@
         font-size: 1.2rem;
     }
 }
+ */
