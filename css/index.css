@@ -1,138 +1,218 @@
-.tablero {
-    grid-column: 4/8;
-    grid-row: 3/auto;
 
-    width: 70rem;
-    height: 50rem;
-    border-radius: 5px;
-
-    margin: auto;
-
-    display: grid;
-    grid-template-columns: repeat(6 ,1fr);
-    grid-template-rows: repeat(4,1fr);
-    gap: 10px;
-}
-
-.carta_trasera {
-    position: relative;
-    background-color: #04fef1;
-    border: 5px solid black;
-    border-radius: 5px;
-
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
-    transition: transform 0.5s ease;
-}
-
-.carta_frontal {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(232, 232, 232, 0.619);
-    border: 5px solid black;
-    border-radius: 5px;
-    font-size: 4rem;
-
+ 
+ #page {
+    height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 5px;
-
-    transform: rotateY(-180deg);
-    backface-visibility: hidden;
-}
-
-.activar {
-    transform: rotateY(-180deg);
-}
-
-.ocultar {
-    transform: rotateY(-180deg);
-}
-
-/* styles.css */
-
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
+    justify-content: space-evenly;
+ }
+ 
+ #juego {
+    height: 100vh;
+    max-height: 700px;
+    display: flex;
+    flex-wrap:wrap;
+    align-items: center;
+    justify-content: center;
+ }
+ .intentos {
+    color: white;
+    position: absolute;
+    padding: 1rem;
+    text-align: center;
+    align-items: center;
+    width: calc(100% - 12rem);
+    font-size: 3rem;
+ }
+ .level{
+    color: white;
+    position: absolute;
+    padding-top: 2rem;
+    width: 10rem;
+    align-items: center;
+    text-align: center; 
+ }
+ .level span{
+    padding: 0.5rem;
+    border: 2.5px solid purple;
+    font-size: 1.5rem;
+ }
+ 
+ .hearts{
+    color: white;
+    text-align: right;    
+    align-items: center;
+    padding-top: 1.4rem;
+    padding-right: 2rem;
+    font-size: 2rem;
+ }
+ .hearts span{
+    padding: 0.5rem;
+    border: 2.5px solid purple;
+    background-color: rgba(248, 82, 220, 0.274);
+ }
+ .puntos{
+    color: white;
+    position: absolute;
+    width: calc(82% - 12rem);
+    text-align: right;    
+    align-items: center;
+    padding-top: 1.5rem;
+    font-size: 2rem;
+ }
+ .aciertos{
+    color: white;
+    position: absolute;
+    padding: 1rem;
+    text-align: center;
+    align-items: center;
+    width: calc(100% - 12rem);
+    font-size: 2rem;
+    flex-wrap: wrap;
+ }
+ .card {
+    width: 100px;
+    height: 140px;
+    margin: 1rem;
+    position: relative;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+ }
+ 
+ .card.active {
+    transform: rotateY(180deg);
+ }
+ 
+ .card div {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
+    border-radius: 1rem;
+    display: flex;
     align-items: center;
-}
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    pointer-events: none;
+ }
+ 
+ .card .face {
+    background:rgba(128, 128, 128, 0.267);
+    border: 3px solid purple;
+    transform: rotateY( 180deg );
+    color: black;
+    font-size: 5rem;
+ }
+ 
+ .card .back {
+    border: 3px solid  rgb(207, 7, 207);
+    background: url(data:image/jpeg;base64,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) center / contain no-repeat;
+ }
+ #next_level{
+    color: white;
+ }
 
-.modal-content {
-    background-color: white;
-    padding: 20px;
+ /* ventana modal*/
+#endGameModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 255, 255);
+    padding: 100px;
+    border: 1.8px solid rgb(250, 7, 250);
+    border-radius: 3rem;
+    box-shadow:   0px  0px 10px 10px rgba(248, 19, 218, 0.685);
+    z-index: 1000;
+ }
+ 
+ #endGameModal .modal-content {
     text-align: center;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-button {
-    padding: 10px 20px;
-    margin-top: 12px;
-    font-size: 1rem;
-    background-color: #007bff;
+ }
+ 
+ #endGameModal h2 {
+    margin-bottom: 40px;
+    font-size: 2rem;
+ }
+ 
+ #restartButton {
+    padding: 20px 35px;
+    background-color: purple;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 3px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-
-@media (max-width: 768px) {
-    .tablero {
-        width: 50rem;
-        height: 35rem;
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(4, 1fr);
+    border-radius: 1rem;
+ }
+ 
+ #restartButton:hover {
+    background-color: darkviolet;
+ }
+ 
+@media (max-width:400px){
+    #page{
+        width:auto;
     }
 
-    .carta_frontal {
-        font-size: 3rem;
-    }
+    .card {
+        width: 40px;
+        height: 60px;
 
-    .modal-content {
-        width: 90%;
-        padding: 10px;
-    }
+     }
+     #juego {
+        height: auto;
+     }
 
-    button {
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .tablero {
-        width: 100%;
-        grid-column: 1/9;
-        grid-row: 5/9;
-
-
-    }
-
-    .carta_frontal {
+     .card .face {
         font-size: 2rem;
-    }
+     }
+     .aciertos{
+        padding-top: 8rem;
+        width: calc(90%);
+        font-size: 1.5rem;
+     }
 
-    .modal-content {
-        width: 95%;
-        padding: 5px;
-    }
+     .hearts{
+        padding-top: 1.5rem;
+        padding-right: 1rem;
+        font-size: 1rem;
+     }
 
-    button {
-        font-size: 0.8rem;
-        padding: 8px 15px;
-    }
+     .hearts span{
+        padding: 0.5rem;
+        border: 2.5px solid purple;
+        background-color: rgba(248, 82, 220, 0.274);
+     }
+     #endGameModal {
+        padding: 60px;
+     }
+     .intentos {
+        font-size: 1.5rem;
+        margin-top: 3.5rem;
+        width: 90%;
+        text-align: right;
+     }
+     .puntos{
+        font-size: 1.5rem;
+        margin-top: 3rem;
+        text-align: left;
+        padding-left: 1.5rem;
+     }
+     .level{
+        color: white;
+        position: absolute;
+        padding-top: 1.71rem;
+        padding-left: 1rem;
+        width: 10rem;
+        align-items: center;
+        text-align: left; 
+     }
+     .level span{
+        padding: 0.5rem;
+        border: 2.5px solid purple;
+        font-size: 1rem;
+     }
+     
+
+
 }
